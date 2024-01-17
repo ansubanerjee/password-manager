@@ -15,8 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "hbs")
 app.set("views", templatePath)
-app.use(express.urlencoded({extended: false}))
-
 
 app.get("/", (req, res)=>{
     res.render("login")
@@ -32,14 +30,14 @@ const data = {
     password: req.body.password
 }
 
-await Usercollection.insertMany([data])
+await collection.insertMany([data])
 res.render("home")
 })
 
 
 app.post("/login",async (req,res)=>{ 
     try{
-        const check = await Usercollection.findOne({name:req.body.name})
+        const check = await collection.findOne({name:req.body.name})
         if (check.password == req.body.password){
             res.render("home")
         }
