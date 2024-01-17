@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 
+//Connection for MongoDB
 mongoose.connect("mongodb://localhost:27017/PasswordManagerDB")
 .then(()=>{
     console.log("Mongo DB connected")
@@ -10,7 +11,7 @@ mongoose.connect("mongodb://localhost:27017/PasswordManagerDB")
 })
 
 
-
+//Login_Signup Schema
 const LogInSchema = new mongoose.Schema({
     name :{
         type: String,
@@ -21,7 +22,27 @@ const LogInSchema = new mongoose.Schema({
         required: true
     }
 })
+const Usercollection = new mongoose.model("UserCredentials", LogInSchema)
+module.exports = Usercollection
 
 
-const collection = new mongoose.model("Collection 1", LogInSchema)
-module.exports = collection
+//Credential Schema
+
+const PasswordSchema = new mongoose.Schema({
+    Website:{
+        type: String,
+        required: true
+    },
+    UserName:{
+        type: String,
+        required: true
+    },
+    Password:{
+        type: String.password,
+        required:true
+    }
+
+})
+
+const Datacollection = new mongoose.model("UserData", PasswordSchema)
+module.exports = Datacollection

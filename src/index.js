@@ -1,9 +1,12 @@
+//Express
 const express = require("express")
 const app = express()
+
+//Objects Definition
 const path = require("path")
 const hbs = require("hbs")
-const collection = require("./mongodb")
-
+const Usercollection = require("./mongodb")
+const Datacollection = require("./mongodb")
 
 const templatePath = path.join(__dirname, '../templates')    
 
@@ -29,14 +32,14 @@ const data = {
     password: req.body.password
 }
 
-await collection.insertMany([data])
+await Usercollection.insertMany([data])
 res.render("home")
 })
 
 
 app.post("/login",async (req,res)=>{ 
     try{
-        const check = await collection.findOne({name:req.body.name})
+        const check = await Usercollection.findOne({name:req.body.name})
         if (check.password == req.body.password){
             res.render("home")
         }
