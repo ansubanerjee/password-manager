@@ -38,7 +38,7 @@ const PasswordSchema = new mongoose.Schema({
         required: true
     },
     Password:{
-        type: String.password,
+        type: String,
         required:true
     }
 
