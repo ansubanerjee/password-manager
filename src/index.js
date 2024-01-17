@@ -31,6 +31,16 @@ const data = {
     name: req.body.name,
     password: req.body.password
 }
+    try{
+        const check  = await Usercollection.findOne({name:req.body.name})
+        if (check.name == req.body.name){
+            res.send("Already Existing Username")
+        }
+    }catch{
+        res.send("Unknown Error")
+
+
+    }
 
 await Usercollection.insertMany([data])
 res.render("home")
@@ -43,6 +53,7 @@ app.post("/login",async (req,res)=>{
         if (check.password == req.body.password){
             res.render("home")
         }
+
         else{
             res.send("Wrong Password")
         }

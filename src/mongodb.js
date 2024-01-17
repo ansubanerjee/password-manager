@@ -28,21 +28,21 @@ module.exports = Usercollection
 
 //Credential Schema
 
-const PasswordSchema = new mongoose.Schema({
-    Website:{
-        type: String,
-        required: true
-    },
-    UserName:{
-        type: String,
-        required: true
-    },
-    Password:{
-        type: String,
-        required:true
-    }
+// const PasswordSchema = new mongoose.Schema({
+//     Website:{
+//         type: String,
+//         required: true
+//     },
+//     UserName:{
+//         type: String,
+//         required: true
+//     },
+//     Password:{
+//         type: String,
+//         required:true
+//     }
 
-})
+// })
 
-const Datacollection = new mongoose.model("UserData", PasswordSchema)
-module.exports = Datacollection
+// const Datacollection = new mongoose.model("UserData", PasswordSchema)
+// module.exports = Datacollection
