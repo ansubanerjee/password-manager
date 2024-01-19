@@ -1,9 +1,23 @@
 {
+  "name": "password-manager",
+  "version": "1.0.0",
+  "description": "Backend for CSI-VIT Project Cycle Password Manager.",
+  "main": "index.js",
+  "type": "module",
+  "scripts":{"test": "echo \"Error: no test specified\" && exit 1"},
+
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansubanerjee/password-manager.git"
+  },
+
   "dependencies": {
     "express": "^4.18.2",
     "hbs": "^4.2.0",
     "mongoose": "^8.0.4",
     "nodemon": "^3.0.2"
   }
+  
 }
 
