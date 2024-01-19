@@ -6,7 +6,6 @@ import { dirname } from 'path';
 import login from "./routes/login.js";
 import signup from "./routes/signup.js";
 import newpassword from "./routes/newpassword.js"
-import signup_act from "./routes/signup.js";
 const app = express()
 
 
@@ -22,22 +21,15 @@ app.use(express.urlencoded({ extended: true }));
 
 connectToDB();
 
-login.get("/", (req, res)=>{
-    res.render("login")
-})
-signup.get("/signup", (req, res)=>{
-    res.render("signup")
-})
-newpassword.get("/newpassword", (req, res)=>{
-    res.render("newpassword")
-})
-
 app.set("view engine", "hbs")
 app.set("views", templatePath)
 app.use(express.urlencoded({extended: false}))
+
+
 app.use("/login", login);
-app.use("/signup", signup_act)
+app.use("/signup", signup)
 app.use("/newpassword", newpassword)
+
 
 app.listen(3000, ()=>{
     console.log("Port Connection Established")

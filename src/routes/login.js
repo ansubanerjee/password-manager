@@ -3,6 +3,10 @@ import Usercollection from "../collection-models/LoginSchema.js"
 
 const login = express.Router()
 
+login.get("/", (req, res)=>{
+    res.render("login")
+})
+
 
 login.post("/login",async (req,res)=>{ 
     try{
