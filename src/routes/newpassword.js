@@ -3,9 +3,7 @@ import Datacollection from "../collection-models/PasswordSchema.js"
 
 const newpassword = express.Router()
 
-newpassword.get("/newpassword", (req, res)=>{
-    res.render("newpassword")
-})
+
 
 newpassword.post("/newpassword", async (req,res)=>{
     const data = {
