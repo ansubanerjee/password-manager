@@ -8,7 +8,7 @@ login.get("/", (req, res)=>{
 })
 
 
-login.post("/login",async (req,res)=>{ 
+login.post("/",async (req,res)=>{ 
     try{
         const check = await Usercollection.findOne({name:req.body.name})
         if (check.password == req.body.password){

@@ -3,11 +3,11 @@ import Usercollection from "../collection-models/LoginSchema.js"
 
 const signup = express.Router()
 
-signup.get("/signup", (req, res)=>{
+signup.get("/", (req, res)=>{
     res.render("signup")
 })
 
-signup.post("/signup",async (req,res)=>{
+signup.post("/",async (req,res)=>{
     const data = {
         name: req.body.name,
         email:req.body.email,
