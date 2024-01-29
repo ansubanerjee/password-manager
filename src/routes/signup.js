@@ -1,7 +1,7 @@
 import express from "express";
 import Usercollection from "../collection-models/LoginSchema.js"
 
-const signup = express.Router()
+const signup = express.Router();
 
 signup.get("/", (req, res)=>{
     res.render("signup")
