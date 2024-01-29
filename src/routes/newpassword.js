@@ -14,7 +14,7 @@ newpassword.post("/", async (req,res)=>{
         password: req.body.password
     }
     await Datacollection.insterMany([data])
-    res.render("home")
+    return res.render("home")
 })
 
 export default newpassword;

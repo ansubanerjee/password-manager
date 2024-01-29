@@ -23,6 +23,6 @@ signup.post("/",async (req,res)=>{
         }
     
     await Usercollection.insertMany([data])
-    res.render("home")
+    return res.render("home")
     })
     export default signup;

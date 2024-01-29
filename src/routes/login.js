@@ -10,18 +10,22 @@ login.get("/", (req, res)=>{
 
 login.post("/",async (req,res)=>{ 
     try{
-        const check = await Usercollection.findOne({name:req.body.name})
+        const name = req.body.name.trim();
+        const check = await Usercollection.findOne({name:name});
+        if (!check) {
+            res.send("User does not exist.");
+        }
         if (check.password == req.body.password){
-            res.render("home")
+            res.render("home");
         }
-
         else{
-            res.send("Wrong Password")
+            res.send("Wrong Password");
         }
-    }catch{
-        res.send("Wrong Credentials")
+    }catch (e) {
+        console.log(e);
+        res.send("Wrong Credentials");
     }
-    res.render("home")
+    return res.render("home");
     }
     )
 export default login;

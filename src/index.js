@@ -19,7 +19,7 @@ const templatePath = path.join(__dirname, '../templates')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-connectToDB();
+await connectToDB();
 
 app.set("view engine", "hbs")
 app.set("views", templatePath)

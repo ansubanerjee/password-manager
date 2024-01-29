@@ -15,5 +15,5 @@ const LogInSchema = new mongoose.Schema({
         required: true
     }
 })
-const Usercollection = new mongoose.model("UserCredentials", LogInSchema)
-export default Usercollection
+const Usercollection = new mongoose.model("UserCredentials", LogInSchema);
+export default Usercollection;
