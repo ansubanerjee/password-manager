@@ -7,7 +7,8 @@ const PasswordSchema = new mongoose.Schema({
     },
     UserName:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     Password:{
         type: String,
@@ -17,4 +18,4 @@ const PasswordSchema = new mongoose.Schema({
 })
 
 const Datacollection = new mongoose.model("UserData", PasswordSchema)
-export default Datacollection
+export default Datacollection;

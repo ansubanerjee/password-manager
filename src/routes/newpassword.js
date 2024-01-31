@@ -9,9 +9,9 @@ newpassword.get("/", (req, res)=>{
 
 newpassword.post("/", async (req,res)=>{
     const data = {
-        website: req.body.website,
-        username: req.body.username,
-        password: req.body.password
+        website: req.body.website.trim(),
+        username: req.body.username.trim(),
+        password: req.body.password.trim()
     };
     await Datacollection.insertMany([data])
     return res.render("home")
