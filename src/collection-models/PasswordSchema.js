@@ -17,5 +17,5 @@ const PasswordSchema = new mongoose.Schema({
 
 })
 
-const Datacollection = new mongoose.model("UserData", PasswordSchema)
+const Datacollection = new mongoose.model("UserDatas", PasswordSchema)
 export default Datacollection;

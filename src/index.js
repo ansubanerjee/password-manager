@@ -27,8 +27,8 @@ app.use(express.urlencoded({extended: false}))
 
 
 app.use("/login", login);
-app.use("/signup", signup)
-app.use("/newpassword", newpassword)
+app.use("/signup", signup);
+app.use("/newpassword", newpassword);
 
 
 app.listen(3000, ()=>{
