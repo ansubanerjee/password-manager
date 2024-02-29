@@ -7,8 +7,8 @@ const errorHandler = require("./helpers/error-handler.js");
 
 
 
-const User = require('./models/user');
-const Password = require('./models/password');
+const User = require('./collection-models/user');
+const Password = require('./collection-models/password');
 
 const cors = require('cors');
 require('dotenv/config');

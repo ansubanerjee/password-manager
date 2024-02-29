@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const {Password} = require('../collection-models/order');
+const {Password} = require('../collection-models/password');
 
 
 
