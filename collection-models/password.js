@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
+
 
 const PasswordSchema = new mongoose.Schema({
     Website:{
@@ -13,9 +14,18 @@ const PasswordSchema = new mongoose.Schema({
     Password:{
         type: String,
         required:true
+    },
+    User:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 
 })
+PasswordSchema.virtual('id').get(function (){
+    return this._id.toHexString()
+});
+PasswordSchema.set('toJSON',{
+    virtuals: true,
+})
 
-const Datacollection = new mongoose.model("UserDatas", PasswordSchema)
-export default Datacollection;
+exports.Order = mongoose.model('Password', PasswordSchema) 

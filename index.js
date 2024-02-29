@@ -1,36 +1,45 @@
-import connectToDB from "./initiallizer/db.js";
-import express from "express";
-import path from "path";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import login from "./routes/login.js";
-import signup from "./routes/signup.js";
-import newpassword from "./routes/newpassword.js"
-const app = express()
+const express = require("express");
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+const app = express();
+const authJwt = require("./helpers/jwt");
+const errorHandler = require("./helpers/error-handler.js");
 
 
-//Objects Definition
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename)
+const User = require('./models/user');
+const Password = require('./models/password');
 
-const templatePath = path.join(__dirname, '../templates')    
+const cors = require('cors');
+require('dotenv/config');
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-await connectToDB();
-
-app.set("view engine", "hbs")
-app.set("views", templatePath)
-app.use(express.urlencoded({extended: false}))
+const api = process.env.API_URL;
+const usersRouter = require('./routers/users');
+const passwordsRouter = require('./routers/passwords');
 
 
-app.use("/login", login);
-app.use("/signup", signup);
-app.use("/newpassword", newpassword);
+app.use(express.json());
+app.use(morgan('tiny'));
+app.use(authJwt());
+app.use(errorHandler);
 
 
-app.listen(3000, ()=>{
-    console.log("Port Connection Established")
+app.use(`${api}/users`, usersRouter)
+app.use(`${api}/passwords`, passwordsRouter)
+
+
+mongoose.connect(process.env.connectionstring)
+.then (()=>{
+    console.log("Database Connection Established")
+})
+.catch((err)=>{
+    console.log(err)
+})
+
+
+app.listen(4000, ()=>{
+    console.log(api);
+    console.log("Running at http://localhost:4000");
 })
