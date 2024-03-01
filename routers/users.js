@@ -29,7 +29,7 @@ router.get(`/:_id`, async (req, res) =>{
 
 
 router.post('/', async (req, res)=>{
-    const salt = env.process.salt;
+    const salt = process.env.salt;
     const user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -85,12 +85,12 @@ router.post('/login', async (req, res)=>{
 
 //Register
 router.post('/register', async (req, res)=>{
-    const salt = env.process.salt;
+    const salt = process.env.salt;
     const user = new User({
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        passwordHash: bcrypt.hashSync(req.body.password,salt),
+        passwordHash: bcrypt.hashSync(req.body.password, salt),
         street: req.body.street,
         apartment: req.body.apartment,
         city: req.body.city,
@@ -134,7 +134,7 @@ router.delete('/:_id', async (req,res)=>{
 })
 
 router.put('/:_id', async (req, res)=>{
-    const salt = env.process.salt;
+    const salt = process.env.salt;
     const userExist = await User.findById(req.params.id);
     let newPassword
     if(req.body.password){

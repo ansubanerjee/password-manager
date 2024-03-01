@@ -11,7 +11,8 @@ const User = require('./collection-models/user');
 const Password = require('./collection-models/password');
 
 const cors = require('cors');
-require('dotenv/config');
+require('dotenv').config();
+
 
 app.use(cors());
 
