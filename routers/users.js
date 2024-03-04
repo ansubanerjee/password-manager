@@ -4,6 +4,8 @@ const router = express.Router();
 const {User} = require('../collection-models/user');
 const jwt = require('jsonwebtoken')
 
+
+
 router.get('/', async (req,res)=>{
     const UserList = await User.find().select('-passwordHash');
     try{
@@ -29,12 +31,13 @@ router.get(`/:_id`, async (req, res) =>{
 
 
 router.post('/', async (req, res)=>{
-    const salt = process.env.salt;
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
     const user = new User({
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        passwordHash: bcrypt.hashSync(req.body.password,salt),
+        passwordHash: hashedPassword,
         street: req.body.street,
         apartment: req.body.apartment,
         city: req.body.city,
@@ -85,7 +88,7 @@ router.post('/login', async (req, res)=>{
 
 //Register
 router.post('/register', async (req, res)=>{
-    const salt = process.env.salt;
+    const salt = await bcrypt.genSalt();
     const user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -134,7 +137,6 @@ router.delete('/:_id', async (req,res)=>{
 })
 
 router.put('/:_id', async (req, res)=>{
-    const salt = process.env.salt;
     const userExist = await User.findById(req.params.id);
     let newPassword
     if(req.body.password){
